@@ -7,6 +7,7 @@
     <packaging>bundle</packaging>
     
     <name>OSGi liquibase</name>
+    <description>OSGi version of Liquibase</description>
     
     <url>http://github.com/BlackBeltTechnology/osgi-liquibase</url>
     
