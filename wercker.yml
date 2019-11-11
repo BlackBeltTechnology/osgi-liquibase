@@ -20,7 +20,7 @@ build:
     - wercker/maven:
       goals: versions:set
       pom: ./pom.xml
-      maven_opts: -DnewVersion=${VERSION_NUMBER}
+      maven_opts: -Dtycho.mode=maven -DnewVersion=${VERSION_NUMBER}
       cache_repo: true
 
     - wercker/maven:
