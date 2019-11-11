@@ -202,15 +202,15 @@
         </profile>
         
         <profile>
-            <id>release-judong</id>
+            <id>release-blackbelt</id>
             <distributionManagement>
                 <snapshotRepository>
                     <id>blackbelt-nexus-distribution</id>
-                    <url>${env.JUDONG_MAVEN_UPSTREAM_SNAPSHOT}</url>
+                    <url>https://nexus.blackbelt.cloud/repository/maven-judo-snapshot/</url>
                 </snapshotRepository>
                 <repository>
                     <id>blackbelt-nexus-distribution</id>
-                    <url>${env.JUDONG_MAVEN_UPSTREAM_RELEASE}</url>
+                    <url>https://nexus.blackbelt.cloud/repository/maven-judo-release/</url>
                 </repository>
             </distributionManagement>
         </profile>

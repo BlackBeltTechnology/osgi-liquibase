@@ -1,4 +1,3 @@
-
 <settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/SETTINGS/1.0.0" xsi:schemalocation="http://maven.apache.org/SETTINGS/1.0.0
     http://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
@@ -19,22 +18,17 @@
         </server>
         
         <server>
-            <id>judong-nexus-distribution</id>
-            <username>${env.JUDONG_NEXUS_USERNAME}</username>
-            <password>${env.JUDONG_NEXUS_PASSWORD}</password>
+            <id>blackbelt-nexus-distribution</id>
+            <username>${env.BLACKBELT_NEXUS_USERNAME}</username>
+            <password>${env.BLACKBELT_NEXUS_PASSWORD}</password>
         </server>
         
-        <server>
-            <id>judong-nexus-mirror</id>
-            <username>${env.JUDONG_NEXUS_USERNAME}</username>
-            <password>${env.JUDONG_NEXUS_PASSWORD}</password>
-        </server>
         
     </servers>
-        
+    
     <profiles>
         <profile>
-            <id>gpg</id>
+            <id>ossrh</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -44,23 +38,11 @@
                 <gpg.passphrase>${env.GPG_PASSPHRASE}</gpg.passphrase>
             </properties>
         </profile>
-
-        <profile>
-            <id>ossrh</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <repositories>
-                <repository>
-                    <id>ossrh-snapshots</id>
-                    <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-                    <snapshots>
-                        <enabled>false</enabled>
-                        <updatePolicy>never</updatePolicy>
-                        <checksumPolicy>fail</checksumPolicy>
-                    </snapshots>
-                </repository>
-            </repositories>
-        </profile>
     </profiles>
+    
+    
+    <pluginGroups>
+        <pluginGroup>com.amashchenko.maven.plugin</pluginGroup>
+    </pluginGroups>
+    
 </settings>

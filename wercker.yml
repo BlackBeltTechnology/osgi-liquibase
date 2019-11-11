@@ -20,13 +20,13 @@ build:
     - wercker/maven:
       goals: versions:set
       pom: ./pom.xml
-      maven_opts: -Dtycho.mode=maven -DnewVersion=${VERSION_NUMBER}
+      maven_opts: -DnewVersion=${VERSION_NUMBER}
       cache_repo: true
 
     - wercker/maven:
       goals: clean deploy
       settings: .maven.xml
-      profiles: release-github,release-judong
+      profiles: release-github,release-blackbelt
       cache_repo: true
 
 #  after-steps:
