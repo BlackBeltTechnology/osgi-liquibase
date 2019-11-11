@@ -205,11 +205,11 @@
             <id>release-judong</id>
             <distributionManagement>
                 <snapshotRepository>
-                    <id>blackbelt-nexus-distribution</id>
+                    <id>judong-nexus-distribution</id>
                     <url>${env.JUDONG_MAVEN_UPSTREAM_SNAPSHOT}</url>
                 </snapshotRepository>
                 <repository>
-                    <id>blackbelt-nexus-distribution</id>
+                    <id>judong-nexus-distribution</id>
                     <url>${env.JUDONG_MAVEN_UPSTREAM_RELEASE}</url>
                 </repository>
             </distributionManagement>
