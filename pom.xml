@@ -9,19 +9,31 @@
     <name>OSGi liquibase</name>
     <description>OSGi version of Liquibase</description>
     
-    <url>http://github.com/BlackBeltTechnology/osgi-liquibase</url>
-    
+    <properties>
+        <project-shortname>osgi-liquibase</project-shortname>
+        <project-repositoryId>BlackBeltTechnology/osgi-liquibase
+        </project-repositoryId>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.7</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <liquibase.version>3.4.1</liquibase.version>
+    </properties>
+
+
     <issueManagement>
-        <url>https://github.com/BlackBeltTechnology/osgi-liquibase/issues</url>
-        <system>GitHub Issues</system>
+      <url>https://github.com/${project-repositoryId}/issues</url>
+      <system>GitHub Issues</system>
     </issueManagement>
-    
+
     <scm>
-        <connection>scm:git:git://github.com/BlackBeltTechnology/osgi-liquibase.git</connection>
-        <developerConnection>scm:git:ssh://${git.username}@github.com:BlackBeltTechnology/osgi-liquibase.git</developerConnection>
-        <url>http://github.com/BlackBeltTechnology/osgi-liquibase</url>
+      <connection>scm:git:git@github.com:${project-repositoryId}.git
+      </connection>
+      <developerConnection>scm:git:ssh://${git.username}@github.com:${project-repositoryId}.git
+      </developerConnection>
+      <url>http://github.com/${project-repositoryId}</url>
     </scm>
-    
+
     <developers>
         <developer>
             <id>borcsokj</id>
@@ -42,21 +54,6 @@
         </developer>
         
     </developers>
-    
-    <licenses>
-        <license>
-            <name>Apache License, Version 2.0</name>
-            <url>https://opensource.org/licenses/Apache-2.0</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-    
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
-        <liquibase.version>3.4.1</liquibase.version>
-    </properties>
     
     <build>
         <plugins>
@@ -169,33 +166,34 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>de.jutzig</groupId>
-                        <artifactId>github-release-plugin</artifactId>
-                        <version>1.2.0</version>
-                        <configuration>
-                            <repositoryId>https://github.com/BlackBeltTechnology/osgi-liquibase.git</repositoryId>
-                            <description>Branch: ${env.WERCKER_GIT_BRANCH} Wercker: ${env.WERCKER_RUN_URL}</description>
-                            <releaseName>${project.version}</releaseName>
-                            <prerelease>true</prerelease>
-                            <tag>${project.version}</tag>
-                            <fileSets>
-                                <fileSet>
-                                    <directory>target</directory>
-                                    <includes>
-                                        <include>*.jar</include>
-                                    </includes>
-                                </fileSet>
-                            </fileSets>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>release-to-github</id>
-                                <phase>install</phase>
-                                <goals>
-                                    <goal>release</goal>
-                                </goals>
-                            </execution>
-                        </executions>
+                      <groupId>de.jutzig</groupId>
+                      <artifactId>github-release-plugin</artifactId>
+                      <version>1.4.0</version>
+                      <inherited>false</inherited>
+                      <configuration>
+                        <repositoryId>${project-repositoryId}</repositoryId>
+                        <description>
+                          **Branch:** ${env.WERCKER_GIT_BRANCH}
+                          **Maven repository:**
+                          ${env.JUDONG_MAVEN_UPSTREAM_SNAPSHOT}/#browse/browse:maven-judo-release:hu%2Fblackbelt%2Feclipse%2F${project-shortname}
+                          **Wercker:**
+                          https://app.wercker.com/${project-repositoryId}/runs/build/${env.WERCKER_RUN_ID}
+                        </description>
+                        <releaseName>${project.version}</releaseName>
+                        <prerelease>true</prerelease>
+                        <tag>${project.version}</tag>
+                        <deleteRelease>true</deleteRelease>
+                        <commitish>${env.WERCKER_GIT_COMMIT}</commitish>
+                      </configuration>
+                      <executions>
+                        <execution>
+                          <id>release-to-github</id>
+                          <phase>deploy</phase>
+                          <goals>
+                            <goal>release</goal>
+                          </goals>
+                        </execution>
+                      </executions>
                     </plugin>
                 </plugins>
             </build>
