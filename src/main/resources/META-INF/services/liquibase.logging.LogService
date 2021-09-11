@@ -1,0 +1,4 @@
+hu.blackbelt.osgi.liquibase.logging.Slf4jLogService
+liquibase.logging.core.BufferedLogService
+liquibase.logging.core.CompositeLogService
+liquibase.logging.core.JavaLogService

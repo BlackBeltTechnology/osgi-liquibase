@@ -1,51 +1,35 @@
 package hu.blackbelt.osgi.liquibase;
 
-import liquibase.resource.ResourceAccessor;
+import liquibase.resource.ClassLoaderResourceAccessor;
+import liquibase.resource.InputStreamList;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.wiring.BundleWiring;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.net.URISyntaxException;
+import java.net.URL;
 
-public class BundleResourceAccessor implements ResourceAccessor {
+public class BundleResourceAccessor extends ClassLoaderResourceAccessor {
 
-    private Bundle bundle;
-    private ClassLoader bundleClassLoader;
-
-    private final Pattern standardUrlPattern;
-
+    final Bundle bundle;
     public BundleResourceAccessor(Bundle bundlePar) {
+        super(bundlePar.adapt(BundleWiring.class).getClassLoader());
         this.bundle = bundlePar;
-        standardUrlPattern = Pattern.compile("liquibase/parser/core/xml/(dbchangelog-[\\d\\.]+.xsd)");
-        BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
-        this.bundleClassLoader = bundleWiring.getClassLoader();
     }
 
     @Override
-    public Set<InputStream> getResourcesAsStream(String path) throws IOException {
-        Set ret = new HashSet();
-        Matcher matcher = standardUrlPattern.matcher(path);
-        if (matcher.matches()) {
-            ret.add(this.getClass().getClassLoader().getResource(path).openStream());
-        } else {
-            ret.add(bundle.getEntry(path).openStream());
+    public InputStreamList openStreams(String relativeTo, String streamPath) throws IOException {
+        InputStreamList inputStreams = super.openStreams(relativeTo, streamPath);
+        if (inputStreams.size() == 0) {
+            URL url = bundle.getEntry(streamPath);
+            if (url != null) {
+                try {
+                    return new InputStreamList(url.toURI(), url.openStream());
+                } catch (URISyntaxException e) {
+                }
+            }
         }
-        return ret;
-    }
-
-    @Override
-    public Set<String> list(String relativeTo, String path, boolean includeFiles, boolean includeDirectories, boolean recursive) throws IOException {
-        return new HashSet(Collections.list(bundle.findEntries(path, "*", true)));
-    }
-
-    @Override
-    public ClassLoader toClassLoader() {
-        return bundleClassLoader;
+        return new InputStreamList();
     }
 }
+
