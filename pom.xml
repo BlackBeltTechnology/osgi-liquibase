@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>hu.blackbelt.osgi.liquibase</groupId>
     <artifactId>osgi-liquibase</artifactId>
-    <version>1.1.2-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
     <packaging>bundle</packaging>
     
     <name>OSGi liquibase</name>
@@ -17,7 +17,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <liquibase.version>3.4.1</liquibase.version>
+        <liquibase.version>4.4.3</liquibase.version>
     </properties>
     <url>https://github.com/BlackBeltTechnology/{project.artifactId}</url>
     <licenses>
@@ -36,7 +36,8 @@
     <scm>
       <connection>scm:git:git@github.com:${project-repositoryId}.git
       </connection>
-      <developerConnection>scm:git:ssh://${git.username}@github.com:${project-repositoryId}.git
+      <!--suppress UnresolvedMavenProperty -->
+        <developerConnection>scm:git:ssh://${git.username}@github.com:${project-repositoryId}.git
       </developerConnection>
       <url>http://github.com/${project-repositoryId}</url>
     </scm>
@@ -94,6 +95,31 @@
                             groupId=org.yaml;artifactId=snakeyaml;inline=true,
                             groupId=org.apache.commons;artifactId=commons-lang3;inline=true
                         </Embed-Dependency>
+                        <Automatic-Module-Name>hu.blackbelt.osgi.liquibase.logging</Automatic-Module-Name>
+                        <Main-Class>liquibase.integration.commandline.Main</Main-Class>
+                        <Liquibase-Package>
+                            liquibase.change,
+                            liquibase.command,
+                            liquibase.changelog,
+                            liquibase.database,
+                            liquibase.parser,
+                            liquibase.precondition,
+                            liquibase.datatype,
+                            liquibase.serializer,
+                            liquibase.sqlgenerator,
+                            liquibase.executor,
+                            liquibase.snapshot,
+                            liquibase.logging,
+                            liquibase.diff,
+                            liquibase.structure,
+                            liquibase.structurecompare,
+                            liquibase.lockservice,
+                            liquibase.sdk.database,
+                            liquibase.ext,
+                            liquibase.pro,
+                            com.datical.liquibase,
+                            hu.blackbelt.osgi.liquibase.logging
+                        </Liquibase-Package>
                     </instructions>
                 </configuration>
             </plugin>
@@ -266,10 +292,12 @@
             <distributionManagement>
                 <snapshotRepository>
                     <id>judong-nexus-distribution</id>
+                    <!--suppress UnresolvedMavenProperty -->
                     <url>${env.JUDONG_MAVEN_UPSTREAM_SNAPSHOT}</url>
                 </snapshotRepository>
                 <repository>
                     <id>judong-nexus-distribution</id>
+                    <!--suppress UnresolvedMavenProperty -->
                     <url>${env.JUDONG_MAVEN_UPSTREAM_RELEASE}</url>
                 </repository>
             </distributionManagement>
