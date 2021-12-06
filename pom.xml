@@ -23,6 +23,12 @@
         <lombok.version>1.18.22</lombok.version>
         <osgi-ds.version>1.3.0</osgi-ds.version>
         <snakeyaml.version>1.13</snakeyaml.version>
+
+        <!-- Code Quality-->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.language>java</sonar.language>
+        <sonar.java.source>${maven.compiler.source}</sonar.java.source>
     </properties>
     <url>https://github.com/BlackBeltTechnology/{project.artifactId}</url>
     <licenses>
@@ -69,6 +75,15 @@
     </developers>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.sonarsource.scanner.maven</groupId>
+                    <artifactId>sonar-maven-plugin</artifactId>
+                    <version>${sonar-maven-plugin-version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.felix</groupId>
