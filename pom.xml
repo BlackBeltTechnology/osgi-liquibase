@@ -22,7 +22,6 @@
         <slf4j.version>1.7.32</slf4j.version>
         <lombok.version>1.18.22</lombok.version>
         <osgi-ds.version>1.3.0</osgi-ds.version>
-        <snakeyaml.version>1.13</snakeyaml.version>
 
         <!-- Code Quality-->
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -107,14 +106,13 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>
-                            hu.blackbelt.osgi.liquibase.*;version=${project.version},liquibase;version=${liquibase.version},liquibase.*;version=${liquibase.version},org.yaml.*;version=${snakeyaml.version}
+                            hu.blackbelt.osgi.liquibase.*;version=${project.version},liquibase;version=${liquibase.version},liquibase.*;version=${liquibase.version}
                         </Export-Package>
                         <Import-Package>
                             *;resolution:=optional
                         </Import-Package>
                         <Embed-Dependency>
                             groupId=org.liquibase;artifactId=liquibase-core;inline=!liquibase/servicelocator/ServiceLocator.class|liquibase/ext/logging/LiquibaseLogger.class,
-                            groupId=org.yaml;artifactId=snakeyaml;inline=true,
                             groupId=org.apache.commons;artifactId=commons-lang3;inline=true
                         </Embed-Dependency>
                         <Automatic-Module-Name>hu.blackbelt.osgi.liquibase.logging</Automatic-Module-Name>
@@ -232,11 +230,6 @@
             <version>${osgi-ds.version}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>${snakeyaml.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
