@@ -4,7 +4,6 @@ import liquibase.exception.LiquibaseException;
 import org.osgi.framework.Bundle;
 
 import java.sql.Connection;
-import java.util.HashMap;
 import java.util.Map;
 
 public interface LiquibaseExecutor {
