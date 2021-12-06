@@ -22,6 +22,7 @@
         <slf4j.version>1.7.32</slf4j.version>
         <lombok.version>1.18.22</lombok.version>
         <osgi-ds.version>1.3.0</osgi-ds.version>
+        <snakeyaml.version>1.13</snakeyaml.version>
     </properties>
     <url>https://github.com/BlackBeltTechnology/{project.artifactId}</url>
     <licenses>
@@ -91,7 +92,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Export-Package>
-                            hu.blackbelt.osgi.liquibase.*;version=${project.version},liquibase;version=${liquibase.version},liquibase.*;version=${liquibase.version}
+                            hu.blackbelt.osgi.liquibase.*;version=${project.version},liquibase;version=${liquibase.version},liquibase.*;version=${liquibase.version},org.yaml.*;version=${snakeyaml.version}
                         </Export-Package>
                         <Import-Package>
                             *;resolution:=optional
@@ -219,7 +220,7 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.13</version>
+            <version>${snakeyaml.version}</version>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>
