@@ -116,6 +116,7 @@
                             liquibase.datatype;version=${liquibase.version},
                             liquibase.database;version=${liquibase.version},
                             liquibase.database.jvm;version=${liquibase.version},
+                            liquibase.database.core;version=${liquibase.version},
                             liquibase.precondition;version=${liquibase.version},
                             liquibase.precondition.core;version=${liquibase.version},
                             liquibase.statement;version=${liquibase.version},
