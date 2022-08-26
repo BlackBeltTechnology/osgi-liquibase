@@ -29,7 +29,7 @@ public class BundleResourceAccessor extends ClassLoaderResourceAccessor {
                 }
             }
         }
-        return new InputStreamList();
+        return inputStreams;
     }
 }
 
