@@ -1,4 +1,18 @@
-= OSGi liquibase
+= osgi-liquibase
 
-OSGi compatible version of liquibase.
+image::https://github.com/BlackBeltTechnology/osgi-liquibase/actions/workflows/build.yml/badge.svg?branch=develop[link="https://github.com/BlackBeltTechnology/osgi-liquibase/actions/workflows/build.yml" float="center"]
 
+== Introduction
+
+Runtime for the JUDO backend.
+
+Contains Guice and Spring modules used by JUDO. Starts off from ASM and Measure models.
+
+== Contributing to the project
+
+Everyone is welcome to contribute to JUDO! As a starter, please read the corresponding link:CONTRIBUTING.adoc[CONTRIBUTING] guide for details!
+
+
+== License
+
+This project is licensed under the https://www.eclipse.org/legal/epl-2.0/[Eclipse Public License - v 2.0].
