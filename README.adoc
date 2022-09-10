@@ -10,7 +10,7 @@ Contains Guice and Spring modules used by JUDO. Starts off from ASM and Measure 
 
 == Contributing to the project
 
-Everyone is welcome to contribute to JUDO! As a starter, please read the corresponding link:CONTRIBUTING.adoc[CONTRIBUTING] guide for details!
+Everyone is welcome to contribute to osgi-liquibase! As a starter, please read the corresponding link:CONTRIBUTING.adoc[CONTRIBUTING] guide for details!
 
 
 == License
