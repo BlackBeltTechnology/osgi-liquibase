@@ -1,2 +1,4 @@
 = OSGi liquibase
 
+OSGi compatible version of liquibase.
+
