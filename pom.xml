@@ -11,7 +11,7 @@
     <description>OSGi version of Liquibase</description>
 
     <properties>
-        <revision>1.2.1-SNAPSHOT</revision>
+        <revision>1.2.1</revision>
         <project-shortname>osgi-liquibase</project-shortname>
         <project-repositoryId>BlackBeltTechnology/osgi-liquibase</project-repositoryId>
 
