@@ -59,3 +59,7 @@ hs_err_pid*
 wercker.env
 .release
 **/.flattened-pom.xml
+.claude
+.gemini
+.opencode
+.agent
