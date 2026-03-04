@@ -32,6 +32,13 @@ Key facts:
 - [src/main/java/hu/blackbelt/osgi/liquibase/logging/Slf4jLogService.java](src/main/java/hu/blackbelt/osgi/liquibase/logging/Slf4jLogService.java): Liquibase LogService implementation registered via SPI, configurable priority
 - [src/main/java/hu/blackbelt/osgi/liquibase/logging/Slf4jLogger.java](src/main/java/hu/blackbelt/osgi/liquibase/logging/Slf4jLogger.java): Maps Liquibase log levels to SLF4J (FINEST to trace, FINE to debug, etc.)
 
+## Used by
+
+- [judo-platform](../judo-platform): runtime/judo-platform
+- [judo-rdbms-schema](../judo-rdbms-schema): runtime/judo-rdbms-schema
+- [judo-services](../judo-services): runtime/judo-services
+- [osgi-filestore](../osgi-filestore): runtime/osgi-filestore
+
 ## Optional
 
 - [.github/workflows/build.yml](.github/workflows/build.yml): CI/CD pipeline (GitHub Actions)
