@@ -1,0 +1,47 @@
+# OSGi Liquibase
+
+> An OSGi bundle that wraps Liquibase 4.4.3 into a self-contained service, allowing other OSGi bundles to run database migration scripts by injecting the `LiquibaseExecutor` component.
+
+Key facts:
+- Java 21 (Azul Zulu JDK), single-module Maven project with Maven Wrapper
+- OSGi bundle packaging via Apache Felix Maven Bundle Plugin
+- Embeds `liquibase-core`, `snakeyaml`, and `commons-lang3` into the bundle JAR
+- Provides custom resource accessors for loading changelogs from OSGi bundles or in-memory streams
+- Bridges Liquibase logging to SLF4J via Java SPI
+- Part of the [JUDO platform](https://github.com/BlackBeltTechnology) by BlackBelt Technology
+- License: Apache 2.0
+
+## Docs
+
+- [README.md](README.md): Project overview, architecture diagrams, and build commands
+- [AGENTS.md](AGENTS.md): Detailed developer guide covering directory structure, key classes, build profiles, and development environment
+- [CONTRIBUTING.md](CONTRIBUTING.md): Development setup and contribution guidelines
+
+## Modules — API & Resource Accessors
+
+- [src/main/java/hu/blackbelt/osgi/liquibase/LiquibaseExecutor.java](src/main/java/hu/blackbelt/osgi/liquibase/LiquibaseExecutor.java): Public service interface with `executeLiquibaseScript()` overloads
+- [src/main/java/hu/blackbelt/osgi/liquibase/BundleResourceAccessor.java](src/main/java/hu/blackbelt/osgi/liquibase/BundleResourceAccessor.java): Loads Liquibase changelogs from an OSGi Bundle via BundleWiring classloader
+- [src/main/java/hu/blackbelt/osgi/liquibase/StreamResourceAccessor.java](src/main/java/hu/blackbelt/osgi/liquibase/StreamResourceAccessor.java): Loads Liquibase changelogs from an in-memory Map of InputStreams
+
+## Modules — Implementation
+
+- [src/main/java/hu/blackbelt/osgi/liquibase/impl/DefaultLiquibaseExecutor.java](src/main/java/hu/blackbelt/osgi/liquibase/impl/DefaultLiquibaseExecutor.java): OSGi DS component that manages Liquibase Scope lifecycle and thread classloader swapping
+
+## Modules — Logging Bridge
+
+- [src/main/java/hu/blackbelt/osgi/liquibase/logging/Slf4jLogService.java](src/main/java/hu/blackbelt/osgi/liquibase/logging/Slf4jLogService.java): Liquibase LogService implementation registered via SPI, configurable priority
+- [src/main/java/hu/blackbelt/osgi/liquibase/logging/Slf4jLogger.java](src/main/java/hu/blackbelt/osgi/liquibase/logging/Slf4jLogger.java): Maps Liquibase log levels to SLF4J (FINEST to trace, FINE to debug, etc.)
+
+## Used by
+
+- [judo-platform](../judo-platform): runtime/judo-platform
+- [judo-rdbms-schema](../judo-rdbms-schema): runtime/judo-rdbms-schema
+- [judo-services](../judo-services): runtime/judo-services
+- [osgi-filestore](../osgi-filestore): runtime/osgi-filestore
+
+## Optional
+
+- [.github/workflows/build.yml](.github/workflows/build.yml): CI/CD pipeline (GitHub Actions)
+- [.github/CIFLOW.md](.github/CIFLOW.md): Detailed CI/CD pipeline and branching strategy documentation
+- [pom.xml](pom.xml): Maven build configuration with OSGi bundle packaging and 6 profiles
+- [LICENSE.txt](LICENSE.txt): Apache License 2.0 text
