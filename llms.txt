@@ -34,10 +34,10 @@ Key facts:
 
 ## Used by
 
-- [judo-platform](../judo-platform): runtime/judo-platform
-- [judo-rdbms-schema](../judo-rdbms-schema): runtime/judo-rdbms-schema
-- [judo-services](../judo-services): runtime/judo-services
-- [osgi-filestore](../osgi-filestore): runtime/osgi-filestore
+- [judo-platform](../judo-platform): Model-driven OSGi runtime platform with REST APIs and Karaf deployment
+- [judo-rdbms-schema](../judo-rdbms-schema): Incremental database schema migration via RDBMS model comparison
+- [judo-services](../judo-services): OSGi runtime services enabling multiple data models in a single Karaf container
+- [osgi-filestore](../osgi-filestore): Unified blob storage service with pluggable backends (RDBMS, filesystem, S3)
 
 ## Optional
 
